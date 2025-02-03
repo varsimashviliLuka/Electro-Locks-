@@ -11,9 +11,18 @@ class User(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True)
 
     uuid = db.Column(db.String(255), unique=True, default=lambda: str(uuid.uuid4()))
+    
+    name = db.Column(db.String(120), nullable=False)
+    last_name = db.Column(db.String(120), nullable=False)
+
+    email = db.Column(db.String(120))
+
+    phone_number = db.Column(db.String(120))
 
     username = db.Column(db.String(120), unique=True, nullable=False)
     _password = db.Column(db.String(255), nullable=False)
+
+    balance = db.Column(db.Float, default=0.0)
 
     # One-to-Many relationship with Role
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))

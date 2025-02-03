@@ -11,9 +11,9 @@ COMMANDS = [init_db, populate_db, insert_db]
 
 
 
-def create_app():
+def create_app(config=Config):
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(config)
 
 
     register_extensions(app)

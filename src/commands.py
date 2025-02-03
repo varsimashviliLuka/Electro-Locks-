@@ -4,7 +4,7 @@ import csv
 from os import path
 
 from src.extensions import db
-from src.models import Stations
+from src.models import User, Role
 from src import Config
 
 
@@ -20,26 +20,20 @@ def init_db():
 @click.command("populate_db")
 @with_appcontext
 def populate_db():
-    pass
-    # stations_csv_file_path = path.join(Config.BASE_DIR, "stations_2024-12-05.csv")
-    # weather_data_csv_file_path = path.join(Config.BASE_DIR, "weather_data_2024-12-05.csv")
-
-    # click.echo("Adding Stations")
-    # with open(stations_csv_file_path, mode='r') as file:
-    #     csv_reader = csv.DictReader(file)
-    #     # Iterate through each row in the CSV file
-    #     for row in csv_reader:
-    #         # Create a new Station instance for each row
-    #         new_station = Stations(
-    #             station_name=row['station_name'],
-    #             url=row['url'],
-    #             api=row['api'],
-    #             latitude=row['latitude'],
-    #             longitude=row['longitude']
-    #         )
-    #         new_station.create()
-
-
+    new_role_a = Role(name="admin", is_admin=True)
+    new_role_a.create()
+    new_role_u = Role(name="user", is_admin=False)
+    new_role_u.create()
+    admin = User(
+        name="Luka",
+        last_name="Varsimashvili",
+        email = "varsimashvili.official@gmail.com",
+        phone_number = "592159199",
+        username = "01124096118",
+        password = "LUKAluka123",
+        role_id = new_role_a.id
+    )
+    admin.create()
     click.echo("Frist Tables Created")
 
 @click.command("insert_db")
