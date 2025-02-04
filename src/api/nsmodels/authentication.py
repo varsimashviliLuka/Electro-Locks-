@@ -22,5 +22,5 @@ registration_parser.add_argument('passwordRepeat', type=str, required=True, help
 
 # Auth parser
 auth_parser = reqparse.RequestParser()
-auth_parser.add_argument("username", required=True, type=str, help="გთხოვთ შეიყვანეთ ")
+auth_parser.add_argument("username", required=True, type=str, help="გთხოვთ შეიყვანეთ მომხმარებელი")
 auth_parser.add_argument("password", required=True, type=str, help="გთხოვთ შეიყვანეთ პაროლი")

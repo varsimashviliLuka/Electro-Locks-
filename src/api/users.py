@@ -12,11 +12,12 @@ class UsersListAPI(Resource):
     @jwt_required()
     @users_ns.doc(security="JsonWebToken")
     def get(self):
-        '''წამოვიღოთ ყველა სადგურების ინფორმაცია'''
+        '''წამოვიღოთ ყველა მომხმარებლის ინფორმაცია'''
         
-        stations = User.query.all()
-        if not stations:
-            return {"error": "სადგურები არ მოიძებნა."}, 404
+        users = User.query.all()
+        if not users:
+            return {"error": "მომხმარებლები არ მოიძებნა."}, 404
         
-        return stations, 200
+        return users, 200
+    
     
